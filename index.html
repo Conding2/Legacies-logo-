@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Legacies Global</title>
+  <link rel="icon" href="favicon.ico" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      overflow: hidden;
+      font-family: "Poppins", sans-serif;
+      background: #000;
+      color: #fff;
+    }
+
+    /* INTRO SECTION */
+    #intro {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at center, #000 70%, #050505);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      opacity: 1;
+      transition: opacity 4s ease-in-out, visibility 4s;
+    }
+
+    #intro.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    #intro h1 {
+      font-size: 3rem;
+      text-transform: uppercase;
+      letter-spacing: 6px;
+      color: #fff;
+      text-align: center;
+      text-shadow: 0 0 20px #c6a35d, 0 0 40px #c6a35d;
+      animation: glow 3s infinite alternate ease-in-out;
+    }
+
+    @keyframes glow {
+      from {
+        text-shadow: 0 0 5px #fff, 0 0 10px #c6a35d, 0 0 20px #c6a35d;
+      }
+      to {
+        text-shadow: 0 0 20px #fff, 0 0 40px #c6a35d, 0 0 60px #c6a35d;
+      }
+    }
+
+    #intro p {
+      font-size: 1.2rem;
+      margin-top: 15px;
+      color: #ccc;
+      text-align: center;
+      opacity: 0.8;
+      animation: fadeIn 3s ease-in-out forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    #enter-btn {
+      margin-top: 40px;
+      background: none;
+      border: 2px solid #c6a35d;
+      color: #c6a35d;
+      padding: 12px 40px;
+      border-radius: 50px;
+      font-size: 1rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.4s ease-in-out;
+    }
+
+    #enter-btn:hover {
+      background: #c6a35d;
+      color: #000;
+      box-shadow: 0 0 30px #c6a35d;
+      transform: scale(1.05);
+    }
+
+    /* MAIN SITE */
+    #main-content {
+      height: 100%;
+      width: 100%;
+      overflow-y: auto;
+      background: linear-gradient(to bottom, #111, #000);
+      opacity: 0;
+      transition: opacity 3s ease-in-out;
+    }
+
+    #main-content.visible {
+      opacity: 1;
+    }
+
+    section {
+      padding: 100px 10%;
+      text-align: center;
+    }
+
+    h2 {
+      font-size: 2.5rem;
+      color: #c6a35d;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 1.1rem;
+      color: #ccc;
+      line-height: 1.6;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    footer {
+      padding: 60px 10%;
+      text-align: center;
+      color: #555;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- Intro Section -->
+  <div id="intro">
+    <h1>Legacies Global</h1>
+    <p>Crafting timeless experiences. Redefining creativity.</p>
+    <button id="enter-btn">Enter</button>
+    <audio id="intro-sound" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_48d4816a8f.mp3?filename=soft-intro-logo-14097.mp3"></audio>
+  </div>
+
+  <!-- Main Content -->
+  <div id="main-content">
+    <section>
+      <h2>Our Mission</h2>
+      <p>To connect cultures, empower designers, and celebrate authenticity worldwide. Legacies Global builds bridges between visionaries and the future, redefining what it means to create with purpose.</p>
+    </section>
+    <section>
+      <h2>Our Vision</h2>
+      <p>We envision a creative ecosystem that thrives on collaboration, sustainability, and timeless artistry — where every design tells a story that transcends boundaries.</p>
+    </section>
+    <footer>
+      &copy; 2025 Legacies Global. All rights reserved.
+    </footer>
+  </div>
+
+  <script>
+    const enterBtn = document.getElementById('enter-btn');
+    const intro = document.getElementById('intro');
+    const mainContent = document.getElementById('main-content');
+    const introSound = document.getElementById('intro-sound');
+
+    function enterSite() {
+      intro.classList.add('hidden');
+      setTimeout(() => {
+        mainContent.classList.add('visible');
+        document.body.style.overflow = 'auto';
+      }, 4000);
+    }
+
+    // Button click event
+    enterBtn.addEventListener('click', () => {
+      introSound.play();
+      enterSite();
+    });
+
+    // Auto fade after 3 seconds
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        if (!mainContent.classList.contains('visible')) {
+          introSound.play();
+          enterSite();
+        }
+      }, 3000);
+    });
+  </script>
+</body>
+</html>
